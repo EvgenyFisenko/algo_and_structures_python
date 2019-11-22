@@ -4,3 +4,16 @@
 записывать ее в последнюю ячейку строки.
 В конце следует вывести полученную матрицу.
 """
+
+from random import randint
+
+N = 5
+M = 4
+EXT_LST = []
+for i in range(N):
+    b = []
+    for j in range(M):
+        b.append(randint(0, 10))
+        print(f"{b[j]:4d}", end='')
+    EXT_LST.append(b)
+    print('   |', sum(b))
