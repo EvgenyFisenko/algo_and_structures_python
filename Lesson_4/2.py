@@ -25,17 +25,17 @@ def find_simple_num(ind):
 
 def eratosfen(num):
     """
-    O(N2)
+    O(n log(log n))
     """
-    lst = [0] * (num ** 2)
-    for i in range(num ** 2):
+    lst = [0] * 10000
+    for i in range(10000):
         lst[i] = i
     lst[1] = 0
     ind = 2
-    while ind < num:
+    while ind < 10000:
         if lst[ind] != 0:
             j = ind * 2
-            while j < num ** 2:
+            while j < 10000:
                 lst[j] = 0
                 j = j + ind
         ind += 1
@@ -43,24 +43,21 @@ def eratosfen(num):
     return fin_lst[num - 1]
 
 
-print(f"Пятое по счету простое число: {find_simple_num(5)}")
-print(f"Пятое по счету простое число: {eratosfen(5)}")
+# print(find_simple_num(1000))
+# print(eratosfen(1000))
 
 # cProfile.run("find_simple_num(5)")  # 18 function calls in 0.000 seconds
-# cProfile.run("eratosfen(5)")  # 5 function calls in 0.000 seconds
+# cProfile.run("eratosfen(5)")  # 5 function calls in 0.003 seconds
 
-# cProfile.run("find_simple_num(5000)")  # 53613 function calls in 0.686 seconds
-# cProfile.run("eratosfen(5000)")  # 5 function calls in 21.559 seconds
+# cProfile.run("find_simple_num(1000)")  # 8921 function calls in 0.029 seconds
+# cProfile.run("eratosfen(1000)")  # 5 function calls in 0.003 seconds
 
-# print(timeit.timeit("find_simple_num(5)", setup="from __main__ import find_simple_num"))  # 2.0589938
-# print(timeit.timeit("eratosfen(5)", setup="from __main__ import eratosfen"))  # 7.3344758
+# print(timeit.timeit("find_simple_num(5)", number=1000, setup="from __main__ import find_simple_num"))  # 0.0021322
+# print(timeit.timeit("eratosfen(5)", number=1000, setup="from __main__ import eratosfen"))  # 3.4588545
 
-# print(timeit.timeit("find_simple_num(1000)", number=10, setup="from __main__ import find_simple_num"))  # 0.2649625
-# print(timeit.timeit("eratosfen(1000)", number=10, setup="from __main__ import eratosfen")) # 7.6449022
+# print(timeit.timeit("find_simple_num(1000)", number=1, setup="from __main__ import find_simple_num"))  # 0.0270633
+# print(timeit.timeit("eratosfen(1000)", number=1, setup="from __main__ import eratosfen"))  # 0.0034370000000000026
 
-# Исходя из условия задачи, необходимо не просто искать все простые числа на промежутке до
-# некоторого n, а находить именно i-тое простое число с использование решета Эратосфена и без.
-# Текущая реализация алгоритма решета (eratosfen) сложностью O(N2), проигрывает по скорости
-# выполнения алгоритму пробного деления (find_simple_num) сложностью O(N2) по причине не самого
-# подходящего алгоритма для решения данной задачи или, возможно, не самой лучшей реализации алгоритма решета
-# Эратосфена.
+# 1. Добавляем в задачу пояснение: Искать i-е по счёту простое число будем в диапаззоне от 0 до 10000.
+# 2. Скорость выполнения алгоритма решето Эратосфена проигрывает алгоритму пробного деления на малых числах,
+# однако превосходит его с ростом количества элементов.
