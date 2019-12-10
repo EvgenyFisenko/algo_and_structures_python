@@ -3,3 +3,8 @@
 #Год является високосным в двух случаях: либо он кратен 4,
 # но при этом не кратен 100, либо кратен 400.
 
+USER_INPUT = int(input("Введите год: "))
+if (USER_INPUT % 4 == 0 and USER_INPUT % 100 != 0) or USER_INPUT % 400 == 0:
+    print(f"{USER_INPUT} - високосный год")
+else:
+    print(f"{USER_INPUT} - обычный год")
