@@ -5,3 +5,16 @@
 (или 0, 3, 4, 5 - если индексация начинается с нуля),
 т.к. именно в этих позициях первого массива стоят четные числа.
 """
+
+LST = [8, 3, 15, 6, 4, 2]
+
+# v1
+LST_2 = [ind for ind, el in enumerate(LST) if el % 2 == 0]
+print(LST_2)
+
+# v2
+LST_2V2 = []
+for i, _ in enumerate(LST):
+    if LST[i] % 2 == 0:
+        LST_2V2.append(i)
+print(LST_2V2)
